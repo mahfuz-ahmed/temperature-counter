@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: url(images/bg-image.jpg) no-repeat;
+        background-size: cover;
+        height: 100vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="col-md-6 m-auto py-5">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            id="inputId"
+            class="form-control"
+            placeholder="Enter a location for Weather ..."
+          />
+          <div class="input-group-append">
+            <button type="button" id="sButton" class="btn btn-danger">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="weather-status text-white text-center">
+        <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="" />
+        <h1 id="countryId">Dhaka</h1>
+        <h3 id="weatherId"><span>38.06</span>&deg;C</h3>
+        <h1 id="lead">Clouds</h1>
+      </div>
+    </div>
+
+    <script>
+      const searchBtn = document.getElementById("sButton");
+      searchBtn.addEventListener("click", function () {
+        var city = document.getElementById("inputId").value;
+        var url =
+          "https://api.openweathermap.org/data/2.5/weather?q=" +
+          city +
+          "&appid=048e2a3f06aca3ce82ce9c89ceaaab27&units=metric";
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            var countryName = data.name;
+            var tempareture = data.main.temp;
+            console.log(countryName);
+            // const countryV = document.getElementById("inputId").value;
+            document.getElementById("countryId").innerText = city;
+
+            var result = (document.getElementById("weatherId").innerText =
+              tempareture);
+
+            if (result > 20 && result < 30) {
+              document.getElementById("lead").innerText = "Normal";
+            } else {
+              document.getElementById("lead").innerText = "Not Normal";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
