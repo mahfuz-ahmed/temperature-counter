@@ -42,9 +42,9 @@
       </form>
       <div class="weather-status text-white text-center">
         <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="" />
-        <h1 id="countryId">Dhaka</h1>
-        <h3 id="weatherId"><span>38.06</span>&deg;C</h3>
-        <h1 id="lead">Clouds</h1>
+        <h1 id="countryId">Please Enter Your City</h1>
+        <h3 id="weatherId"><span>00.00</span>&deg;C</h3>
+        <h1 id="lead">----</h1>
       </div>
     </div>
 
@@ -68,11 +68,18 @@
             var result = (document.getElementById("weatherId").innerText =
               tempareture);
 
-            if (result > 20 && result < 30) {
-              document.getElementById("lead").innerText = "Normal";
-            } else {
-              document.getElementById("lead").innerText = "Not Normal";
-            }
+            if (result > 35) {
+              document.getElementById("lead").innerText =
+                "Temperature is Very Hot";
+            } else if (result < 35 && result > 26) {
+              document.getElementById("lead").innerText = "Temperature is Hot";
+            } else if (result < 26 && result > 20) {
+              document.getElementById("lead").innerText = "Temperature is Good";
+            } else if (result < 20 && result > 10) {
+              document.getElementById("lead").innerText = "Temperature is Cold";
+            } else
+              document.getElementById("lead").innerText =
+                "Temperature is Very Cold";
           });
       });
     </script>
